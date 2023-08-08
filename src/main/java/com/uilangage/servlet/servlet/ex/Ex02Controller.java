@@ -26,8 +26,6 @@ public class Ex02Controller extends HttpServlet{
 			sum += i;
 		}
 		
-		out.println("<html><head><title>합계</title></head><body>");
-		out.println("<h3>합계 : " + sum + "</h3></body></html>");
 		
 		
 		

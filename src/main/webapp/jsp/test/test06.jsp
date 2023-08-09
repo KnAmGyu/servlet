@@ -8,6 +8,33 @@
 <title>장보기 목록</title>
 </head>
 <body>
-
+	<%
+		List<String> goodsList = Arrays.asList(new String[]{ 
+		    "저지방 우유", "요플레 4개", "딸기 1팩", "삼겹살 300g", "생수 6개", "주방 세제"
+		});
+	%>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>품목</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(int i = 0; i <= goodsList.size(); i++){ 
+			 	String goods = goodsList.get(i);
+			%>
+			<tr>
+				
+				<td><%= (i + 1) %></td>
+				
+				
+				<td><%= goods %></td>
+			</tr>
+			<%} %>
+		</tbody>
+	</table>
+	
 </body>
 </html>

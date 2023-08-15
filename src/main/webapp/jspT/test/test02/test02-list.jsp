@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Melong</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -90,28 +90,8 @@
     musicList.add(musicInfo);
 %>
 	<div id="wrap">
-		<header class="d-flex">
-			<div class="logo d-flaex align-items-cexter">
-				<h1 class="text-success">Melong</h1>
-			</div>
-			<div class="">
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-				  <div class="input-group-append">
-				    <button class="btn btn-bg-secondary" type="button">Button</button>
-				  </div>
-				</div>
-			</div>
-		</header>
-		<nav>
-			<ul class="nav">
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">멜롱챠트</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">최신음악</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">장르음악</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">멜롱DJ</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">뮤직어워드</a></li>
-			</ul>
-		</nav>
+		<jsp:include page="header.jsp"/>
+		<jsp:include page="menu.jsp"/>
 		<section class="contents">
 			<div class="artist d-flex border border-success p-3 mt-3">
 				<div><img width="200" src="<%= artistInfo.get("photo")%>"></div>
@@ -121,7 +101,7 @@
 					<div><%= artistInfo.get("debute") %> 데뷔</div>
 				</div>
 			</div>		
-			<div class="music-list mt-3">
+			<div class="music-list mt-5">
 				<h1>곡 목록</h1>
 				<table class="table table-sm text-center">
 					<thead>
@@ -135,7 +115,7 @@
 						<% for(Map<String, Object> list:musicList){%>
 						<tr>
 							<td><%= list.get("id") %></td>
-							<td><a href="#"><%= list.get("title") %></a></td>
+							<td><a href="/jspT/test/test02/test02-detail.jsp?title=<%= list.get("title") %>"><%= list.get("title") %></a></td>
 							<td><%= list.get("album") %></td>
 						</tr>
 						<%} %>
@@ -145,10 +125,7 @@
 			</div>
 		
 		</section>
-		<footer>
-			<hr>
-			<div class="text-secondary small">Copyright © marondal 2021</div>
-		</footer>
+		<jsp:include page="footer.jsp"/>
 	</div>
 
 

@@ -55,7 +55,7 @@
 	    };
 	    list.add(map);	
 		
-	    String title = request.getParameter("title");
+	    int id = Integer.parseInt(request.getParameter("id"));
 	    
 	%>
 
@@ -63,8 +63,8 @@
 	<div class="container">
 		<div class="d-flex">
 			<% for(Map<String, Object> book:list){
-					if(title.equals(book.get("title"))){
-					
+				int bookId = (Integer)book.get("id");
+				if(id == bookId) {
 					%>
 			<img width="300" src="<%= book.get("image") %>">
 			<div>

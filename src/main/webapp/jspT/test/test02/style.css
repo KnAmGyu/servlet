@@ -3,7 +3,10 @@
 #wrap{ 
 	width:1200px; 
 	margin:0 auto; }
-
+.logo{ 
+	width:300px;
+	height:100px;
+ }
 nav{ 
 	height:40px;
  }	
@@ -11,3 +14,5 @@ nav{
 	 height:70px;
 	 
  }
+ .tit{ width:90px }
+ .con{ width:400px }

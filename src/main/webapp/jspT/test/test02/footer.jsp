@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+		<footer>
+			<hr>
+			<div class="text-secondary small">Copyright © marondal 2021</div>
+		</footer>
 </body>
 </html>

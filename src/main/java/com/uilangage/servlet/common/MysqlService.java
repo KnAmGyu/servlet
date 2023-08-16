@@ -49,7 +49,7 @@ public class MysqlService {
 	}
 	
 	// select 쿼리수행
-	public ResultSet selct(String query) {
+	public ResultSet select(String query) {
 		
 		ResultSet resultSet;
 		try {

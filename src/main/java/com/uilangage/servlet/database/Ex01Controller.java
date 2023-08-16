@@ -19,9 +19,7 @@ public class Ex01Controller extends HttpServlet{
 		
 		PrintWriter out = response.getWriter();
 		
-		
-		
-		MysqlService mysqlService = new MysqlService();
+		MysqlService mysqlService = MysqlService.getInstance();
 		mysqlService.connect();
 		
 		String selectQuery = "SELECT* FROM `used_goods`;";

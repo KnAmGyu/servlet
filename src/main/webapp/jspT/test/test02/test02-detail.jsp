@@ -11,77 +11,36 @@
 </head>
 <body>
 	<div id="wrap">
+	
+	<%@ include file="musicData.jsp" %>
 	<%
-		List<Map<String, Object>> musicList = new ArrayList<>();
-	
-	    Map<String, Object> musicInfo = new HashMap<>();
-	    musicInfo.put("id", 1);
-	    musicInfo.put("title", "팔레트");
-	    musicInfo.put("album", "Palette");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://upload.wikimedia.org/wikipedia/ko/b/b6/IU_Palette_final.jpg");
-	    musicInfo.put("time", 217);
-	    musicInfo.put("composer", "아이유");
-	    musicInfo.put("lyricist", "아이유");
-	    musicList.add(musicInfo);
-	
-	    musicInfo = new HashMap<>();
-	    musicInfo.put("id", 2);
-	    musicInfo.put("title", "좋은날");
-	    musicInfo.put("album", "Real");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://upload.wikimedia.org/wikipedia/ko/3/3c/IU_-_Real.jpg");
-	    musicInfo.put("time", 233);
-	    musicInfo.put("composer", "이민수");
-	    musicInfo.put("lyricist", "김이나");
-	    musicList.add(musicInfo);
-	
-	    musicInfo = new HashMap<>();
-	    musicInfo.put("id", 3);
-	    musicInfo.put("title", "밤편지");
-	    musicInfo.put("album", "palette");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://upload.wikimedia.org/wikipedia/ko/b/b6/IU_Palette_final.jpg");
-	    musicInfo.put("time", 253);
-	    musicInfo.put("composer", "제휘,김희원");
-	    musicInfo.put("lyricist", "아이유");
-	    musicList.add(musicInfo);
-	
-	    musicInfo = new HashMap<>();
-	    musicInfo.put("id", 4);
-	    musicInfo.put("title", "삐삐");
-	    musicInfo.put("album", "삐삐");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/111/535/81111535_1539157728291_1_600x600.JPG");
-	    musicInfo.put("time", 194);
-	    musicInfo.put("composer", "이종훈");
-	    musicInfo.put("lyricist", "아이유");
-	    musicList.add(musicInfo);
-	
-	    musicInfo = new HashMap<>();
-	    musicInfo.put("id", 5);
-	    musicInfo.put("title", "스물셋");
-	    musicInfo.put("album", "CHAT-SHIRE");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/724/877/80724877_1445520704274_1_600x600.JPG");
-	    musicInfo.put("time", 194);
-	    musicInfo.put("composer", "아이유,이종훈,이채규");
-	    musicInfo.put("lyricist", "아이유");
-	    musicList.add(musicInfo);
-	
-	    musicInfo = new HashMap<>();
-	    musicInfo.put("id", 6);
-	    musicInfo.put("title", "Blueming");
-	    musicInfo.put("album", "Love poem");
-	    musicInfo.put("singer", "아이유");
-	    musicInfo.put("thumbnail", "https://upload.wikimedia.org/wikipedia/ko/6/65/%EC%95%84%EC%9D%B4%EC%9C%A0_-_Love_poem.jpg");
-	    musicInfo.put("time", 217);
-	    musicInfo.put("composer", "아이유,이종훈,이채규");
-	    musicInfo.put("lyricist", "아이유");
-	    musicList.add(musicInfo);
-	    
+	    String idString = request.getParameter("id");
 	    String title = request.getParameter("title");	
 	    
+	    
+	    Map<String, Object> target = null;
+	    for(Map<String, Object> list:musicList){
+	    	//대상이 되는 노래정보 객체를 얻어 낸다.	
+		    if(idString != null){
+		    	// id가 전달이되면 , id 일치하는 정보
+			    int id = Integer.parseInt(idString);
+			    int musicId = (Integer)list.get("id");
+			    
+		    	if(id == musicId){
+		    		target = list;
+		    	}
+		    	
+	    	}else if(title != null){// title이 전달이되면 , title 일치하는 정보
+	    		if(title.equals(list.get("title"))){
+	    			target = list;
+	    		}
+	    	}
+		    }
+		    
+		    //
+	    int time = (Integer)target.get("time");
+	    int minute = time / 60;
+		int second = time % 60;
 	    
 	%>
 		<jsp:include page="header.jsp"/>
@@ -89,37 +48,30 @@
 		<section class="contents">
 			<h1 class="mt-4">곡정보</h1>
 			<div class="artist d-flex border border-success p-3 mt-3">
-				<% for(Map<String, Object> list:musicList){
-						if(title.equals(list.get("title"))){
-							int musicTime = (Integer)list.get("time");
-							int minute = musicTime / 60;
-							int second = musicTime % 60;
-					%>
-				<div><img width="200" src="<%= list.get("thumbnail") %>"></div>
+				
+				<div><img width="200" src="<%= target.get("thumbnail") %>"></div>
 				<div class="ml-4">
 					
-					<div class="display-4"><%= list.get("title") %></div>
-					<div class="text-success mt-2 mb-2 font-weight-bold"><%= list.get("singer") %></div>
+					<div class="display-4"><%= target.get("title") %></div>
+					<div class="text-success mt-2 mb-2 font-weight-bold"><%= target.get("singer") %></div>
 					<div class="d-flex"> 
-						<div class="tit">앨범</div>
-						<div class="con"><%= list.get("album") %></div>
+						<div class="tit text-secondary">앨범</div>
+						<div class="con"><%= target.get("album") %></div>
 					</div>
 					<div class="d-flex"> 
-						<div class="tit">재생시간</div>
+						<div class="tit text-secondary">재생시간</div>
 						<div class="con"><%= minute %> : <%= second %></div>
 					</div>
 					<div class="d-flex"> 
-						<div class="tit">작곡가</div>
-						<div class="con"><%= list.get("composer") %></div>
+						<div class="tit text-secondary">작곡가</div>
+						<div class="con"><%= target.get("composer") %></div>
 					</div>
 					<div class="d-flex"> 
-						<div class="tit">작사가</div>
-						<div class="con"><%= list.get("lyricist") %></div>
+						<div class="tit text-secondary">작사가</div>
+						<div class="con"><%= target.get("lyricist") %></div>
 					</div>
 				</div>
-				<%
-					}
-				} %>
+				
 			</div>				
 			<div class="music-lyrics mt-5">
 				<h1>가사</h1>

@@ -17,6 +17,8 @@ public class BookmarkInsertController  extends HttpServlet{
 		String name = request.getParameter("name");
 		String url = request.getParameter("url");
 		
+		int id = Integer.parseInt(request.getParameter("delete"));
+		
 		MysqlService mysqlService = MysqlService.getInstance(); 
 		
 		mysqlService.connect();
@@ -27,6 +29,10 @@ public class BookmarkInsertController  extends HttpServlet{
 				+ "('" + name + "', '" + url + "');";
 		
 		mysqlService.update(query);
+		
+		String deleteQuery = "DELETE FROM `bookmark_list` WHERE id = " + id + ";";
+		
+		mysqlService.update(deleteQuery);
 		
 		mysqlService.disconnect();
 		

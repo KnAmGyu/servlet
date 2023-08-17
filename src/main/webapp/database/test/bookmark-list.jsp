@@ -33,7 +33,7 @@
 				<tr>
 					<td><%= resultSet.getString("name") %></td>
 					<td><a terget="blank" href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
-					<td><a class="btn btn-danger" href="#">삭제</a></td>
+					<td><a class="btn btn-danger" href="/db/bookmark/insert?delete=<%= resultSet.getInt("id") %>">삭제</a></td>
 				</tr>
 				<% } %>
 			</tbody>		

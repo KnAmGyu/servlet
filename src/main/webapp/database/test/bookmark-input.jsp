@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<form method="get" action="/db/bookmark/insert">
+		<form method="Post" action="/db/bookmark/insert">
 			<h1>즐겨찾기 추가</h1>	
 			<div class="col-sm-4">		
 				<label>사이트 명</label><br>

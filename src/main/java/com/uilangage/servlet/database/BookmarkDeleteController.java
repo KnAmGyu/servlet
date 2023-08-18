@@ -8,33 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.uilangage.servlet.common.MysqlService;
-@WebServlet("/db/bookmark/insert")
-public class BookmarkInsertController  extends HttpServlet{
-
+@WebServlet("/db/bookmark/delete")
+public class BookmarkDeleteController extends HttpServlet{
+	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String name = request.getParameter("name");
-		String url = request.getParameter("url");
-		
+		int id = Integer.parseInt(request.getParameter("delete"));
 		
 		MysqlService mysqlService = MysqlService.getInstance(); 
 		
 		mysqlService.connect();
 		
-		String query = "INSERT INTO `bookmark_list`\r\n"
-				+ "(`name`, `url`)\r\n"
-				+ "VALUE\r\n"
-				+ "('" + name + "', '" + url + "');";
+		String deleteQuery = "DELETE FROM `bookmark_list` WHERE id = " + id + ";";
 		
-		mysqlService.update(query);
-		
-		
+		mysqlService.update(deleteQuery);
 		
 		mysqlService.disconnect();
 		
 		response.sendRedirect("/database/test/bookmark-list.jsp");
 		
-		
 	}
+
+		
 }

@@ -21,23 +21,25 @@
 
 
 	<div class="container">
-		<table class="table text-center">
-			<thead>
-				<tr>
-					<th>사이트</th>
-					<th colspan="2">사이트주소</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% while(resultSet.next()){ %>
-				<tr>
-					<td><%= resultSet.getString("name") %></td>
-					<td><a terget="blank" href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
-					<td><a class="btn btn-danger" href="/db/bookmark/insert?delete=<%= resultSet.getInt("id") %>">삭제</a></td>
-				</tr>
-				<% } %>
-			</tbody>		
-		</table>
+		<form method="get" action="/db/bookmark/insert">
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th>사이트</th>
+						<th colspan="2">사이트주소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% while(resultSet.next()){ %>
+					<tr>
+						<td><%= resultSet.getString("name") %></td>
+						<td><a terget="blank" href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
+						<td><a class="btn btn-danger" href="/db/bookmark/delete?delete=<%= resultSet.getInt("id") %>">삭제</a></td>
+					</tr>
+					<% } %>
+				</tbody>		
+			</table>
+		</form>
 	</div>
 
 
